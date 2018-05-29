@@ -2,6 +2,7 @@ package guru.springframework.domain;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.Set;
 
 /**
  * Created by jt on 6/13/17.
@@ -14,10 +15,19 @@ public class Ingredient {
     private Long id;
     private String description;
     private BigDecimal amount;
+    
+    @OneToOne(fetch = FetchType.EAGER)
+    private UnitofMeasure uom;
 
-    //private UnitOfMeasure uom;
+	public UnitofMeasure getUom() {
+		return uom;
+	}
 
-    @ManyToOne
+	public void setUom(UnitofMeasure uom) {
+		this.uom = uom;
+	}
+
+	@ManyToOne
     private Recipe recipe;
 
     public Long getId() {
